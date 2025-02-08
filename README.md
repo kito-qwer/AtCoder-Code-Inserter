@@ -36,7 +36,7 @@ AtCoder Code Insertet は、AtCoder のコードテストページにおいて�
 
 - save [key]
 
-コマンドから次のコマンド (または EOF) まで内容を指定したキーで保存します。
+コマンドから次のコマンド (または EOF) までの内容を指定したキーで保存します。
 
 ```C++
 // @aci save add
