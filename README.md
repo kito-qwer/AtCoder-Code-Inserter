@@ -18,7 +18,7 @@ AtCoder Code Insertet は、AtCoder のコードテストページにおいて�
 ## インストール方法
 
 1. [Tampermonkey](https://www.tampermonkey.net/) をブラウザにインストールします。
-2. [ここ](https://raw.githubusercontent.com/kito-qwer/AtCoder-Code-Inserter/refs/heads/master/AtCoderCodeInserter.user.js)をクリックすると Tampermonkey が起動するので指示に従いインストールします。
+2. [ここ](https://raw.githubusercontent.com/kito-qwer/AtCoder-Code-Inserter/refs/heads/main/AtCoderCodeInserter.user.js)をクリックすると Tampermonkey が起動するので指示に従いインストールします。
 3. AtCoder のコードテストのページにアクセスするとスクリプトが実行され、"Open File" ボタンの下に "ACI Run" のボタンが追加されます。
 
 ## 使い方
