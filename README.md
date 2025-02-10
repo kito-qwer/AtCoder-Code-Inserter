@@ -10,6 +10,8 @@ AtCoder Code Insertet は、AtCoder のコードテストページにおいて�
 	保存されたコード素片を指定したキーでエディタ内に挿入する。
 - 削除 remove
 	指定されたキーのコード素片を削除する。
+- 名前空間 namespace
+	名前空間を設定する(標準は"default")。C++様に`C++::code`と記述することで名前空間の外部からアクセスすることができる。
 - 一覧表示 list
 	保存されているキーの一覧を表示する。
 - ヘルプ help
@@ -45,6 +47,15 @@ int add(int a, int b){
 }
 ```
 
+名前空間を使用するときは名前空間とキーを`::`で繋ぎます。
+
+```C++
+// @aci save C++::add
+int add(int a, int b){
+	return a+b;
+}
+```
+
 - insert [key]
 
 指定されたキーで保存されているコード素片を挿入します。
@@ -59,6 +70,13 @@ int add(int a, int b){
 
 ```C++
 // @aci remove [key]
+```
+- namespace [key]
+
+指定された名前空間に設定します。これにより、名前空間を記述する必要がなくなります。
+
+```C++
+// @aci namespace C++
 ```
 
 - list
