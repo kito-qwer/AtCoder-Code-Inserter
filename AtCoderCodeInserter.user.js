@@ -1,33 +1,39 @@
 // ==UserScript==
 // @name         AtCoder Code Inserter
 // @namespace    http://tampermonkey.net/
-// @version      1.1.0
+// @version      1.1.1
 // @description  AtCoderのコードエディタに登録したコードを挿入する
 // @author       Qvito
 // @match        https://atcoder.jp/contests/*/custom_test*
+// @match        https://atcoder.jp/contests/*/tasks/*
 // @grant        unsafeWindow
 // ==/UserScript==
 
 /*
 Update
+v1.1.1: 問題ページへ対応, ショートカット Ctrl + Alt + p を追加
 v1.1.0: 名前空間の追加, ファイル構造の変更, 移行処理
 */
 
-let version = "1.1.0";
+let version = "1.1.1";
 
 (function() {
     'use strict';
 
     const lang = unsafeWindow.LANG == "en" ? 0 : 1;
     migrateDate1_1_0();
-    let targetElement = document.querySelector("#btn-open-file"); // ID指定
+    let targetElement = document.querySelector("#btn-open-file");
+    let formElement = targetElement.closest("form");
+
     if (targetElement) {
         let runButton = document.createElement("button");
         let runButtonName = ["ACI Run", "ACI を実行"]
+        runButton.setAttribute("type", "button");
         runButton.className = "btn btn-default btn-sm";
         runButton.setAttribute("autocomplete", "off");
         runButton.setAttribute("aria-pressed", "false");
         runButton.textContent = runButtonName[lang];
+        formElement.parentNode.insertBefore(runButton, formElement.nextSibling);
         runButton.addEventListener("click", () =>{
             runACI();
         });
@@ -37,7 +43,7 @@ let version = "1.1.0";
     }
 
     document.addEventListener("keydown", (event) => {
-        if (event.ctrlKey && event.shiftKey && event.key === "Enter") {
+        if ((event.ctrlKey && event.shiftKey && event.key === "Enter") || (event.ctrlKey && event.altKey && event.key === "p")) {
             event.preventDefault();
             runACI();
         }
@@ -62,7 +68,6 @@ function migrateDate1_1_0(){
     for(let i = 0; i < keys.length; i++){
         str += "// @aci save " + keys[i] + "\n";
         str += localStorage.getItem("ACI_" + keys[i]) + "\n";
-        // str += "// @aci remove " + keys[i] + "\n";
     }
     aciProcess(str);
     for(let i = 0; i < keys.length; i++){
